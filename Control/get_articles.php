@@ -1,6 +1,6 @@
 <?php 
-require ("config.php");
-require ("Article.class.php");
+require_once ("config.php");
+require ("Model/Article.class.php");
 function get_articles($id_cat) {
 	try
 	{
@@ -10,7 +10,12 @@ function get_articles($id_cat) {
 	{
 	        die('Erreur : ' . $e->getMessage());
 	}
-	$req = $db->prepare('SELECT * FROM articles where id_cat = ?');
+	if($id_cat == 'all') {
+		$req = $db->prepare('SELECT * FROM articles');
+	}
+	else {
+		$req = $db->prepare('SELECT * FROM articles where id_cat = ?');
+	}
 	$req->execute(array($id_cat));
 	$articles = array();
 	while ($data = $req->fetch()) {

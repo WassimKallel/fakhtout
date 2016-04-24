@@ -5,7 +5,7 @@
 class Category
 {
 	private $id;
-	private $name;
+	public $name;
 	
 	function __construct($id,$name)
 	{

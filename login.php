@@ -1,40 +1,38 @@
-<?php 
-require ("config.php");
-require ("User.php");
-
-function login() {
-	try
-	{
-		$db = new PDO('mysql:host='.DB_HOST.';dbname='.DB_DATABASE.';charset=utf8', DB_USER, DB_PASSWORD);
-    }
-	catch (Exception $e)
-	{
-	    die('Erreur : ' . $e->getMessage());
-	}
-	$req = $db->prepare('SELECT * FROM users WHERE pseudo = ?');
-	$req->execute(array($_POST['pseudo']));
-	$data = $req->fetch();
-	if (empty($data))
-	{
-		$err = 1;
-	}
-	else {
-		if($data['password'] ==  $_POST['password']) {
-			$err = 0;
-			$user = new User($data['id'],$data['name'],$data['pseudo']);
-			session_start();
-			$_SESSION['user'] = serialize($user);
-
-		}
-		else {
-			$err = 2;
-		}
-	}
-	return $err;	
-}
-
-$err = login();
-$host  = $_SERVER['HTTP_HOST'];
-$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-header("Location: http://$host$uri?err=$err");
-?>
+	<?php include 'header.php';?>
+	<section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="login-form"><!--login form-->
+						<h2>Login to your account</h2>
+						<form action="#">
+							<input type="text" placeholder="Name" />
+							<input type="email" placeholder="Email Address" />
+							<span>
+								<input type="checkbox" class="checkbox"> 
+								Keep me signed in
+							</span>
+							<button type="submit" class="btn btn-default">Login</button>
+						</form>
+					</div><!--/login form-->
+				</div>
+				<div class="col-sm-1">
+					<h2 class="or">OR</h2>
+				</div>
+				<div class="col-sm-4">
+					<div class="signup-form"><!--sign up form-->
+						<h2>New User Signup!</h2>
+						<form action="#">
+							<input type="text" placeholder="Name"/>
+							<input type="email" placeholder="Email Address"/>
+							<input type="password" placeholder="Password"/>
+							<button type="submit" class="btn btn-default">Signup</button>
+						</form>
+					</div><!--/sign up form-->
+				</div>
+			</div>
+		</div>
+	</section><!--/form-->
+	
+	
+	<?php include 'footer.php';?>

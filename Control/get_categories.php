@@ -1,6 +1,6 @@
 <?php 
-require ("config.php");
-require ("Category.class.php");
+require_once ("config.php");
+require ("Model/Category.class.php");
 function get_categories() {
 	try
 	{

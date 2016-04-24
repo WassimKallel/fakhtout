@@ -4,12 +4,12 @@
 */
 class Article 
 {
-	private $id;
+	public $id;
 	private $category;
 	private $name;
-	private $description;
+	public $description;
 	private $brand;
-	private $price;
+	public $price;
 
 	function __construct($id, $category, $name, $description, $brand, $price)
 	{
