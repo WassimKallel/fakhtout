@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home | E-Shopper</title>
+    <title>Fakhtout | 404</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -27,7 +27,7 @@
 <body>
 	<div class="container text-center">
 		<div class="logo-404">
-			<a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+			<a href="index.php"><img src="images/home/logo.png" alt="" /></a>
 		</div>
 		<div class="content-404">
 			<img src="images/404/404.png" class="img-responsive" alt="" />

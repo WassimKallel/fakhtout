@@ -1,6 +1,6 @@
 <?php 
 require_once ("config.php");
-require ("Model/Article.class.php");
+require_once ("Model/Article.class.php");
 function get_articles($id_cat) {
 	try
 	{

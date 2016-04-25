@@ -1,13 +1,13 @@
-	<?php include 'header.php';?>
+	<?php include 'Include/header.php';?>
 	<section id="form"><!--form-->
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
 						<h2>Login to your account</h2>
-						<form action="#">
-							<input type="text" placeholder="Name" />
-							<input type="email" placeholder="Email Address" />
+						<form action="Control/login.php" method="POST">
+							<input type="text" name="pseudo" placeholder="Pseudo" />
+							<input type="password" name="password" placeholder="Password" />
 							<span>
 								<input type="checkbox" class="checkbox"> 
 								Keep me signed in
@@ -35,4 +35,4 @@
 	</section><!--/form-->
 	
 	
-	<?php include 'footer.php';?>
+	<?php include 'Include/footer.php';?>

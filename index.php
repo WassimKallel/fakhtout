@@ -11,11 +11,25 @@
                         <?php // include 'Include/recommended.php';?>
                     <div class="features_items">
                         <!--features_items-->
-                        <h2 class="title text-center">Features Items</h2>
-
+                        <?php 
+                        require 'Control/get_category.php';
+                        if (isset($_GET['cat'])) {
+                        	$category = get_category($_GET['cat']);
+                        	if (!isset($category)) {
+                        		$host  = $_SERVER['HTTP_HOST'];
+								$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+								echo '<meta http-equiv="refresh" content="0; URL=http://'.$host.$uri.'/404.php">';
+                        	}
+                        ?>
+                        <h2 class="title text-center"><?php echo $category->name ?></h2>
+                        <?php }
+                        else { ?>
+                        	<h2 class="title text-center">Featured Items</h2>
+                        <?php } ?>
                         <?php 
                             require 'Control/get_articles.php';
-                            $articles = get_articles('all');
+                            $cat = isset($_GET['cat']) ? $_GET['cat'] : 'all';
+                            $articles = get_articles($cat);
                             foreach ($articles as $article) {
                         ?>
                         <div class="col-sm-4">
@@ -48,4 +62,4 @@
         </div>
     </section>
     <?php include 'Include/footer.php';?>
-    
+   

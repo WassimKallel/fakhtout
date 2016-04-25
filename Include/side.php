@@ -1,4 +1,13 @@
 <div class="left-sidebar">
+<h2>Search</h2>
+    <div class="panel panel-default">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+      <input type="text" class="form-control" placeholder="Search for...">
+    </div><!-- /input-group -->
+    </div>
     <h2>Category</h2>
         <!--shipping-->
     <!-- <div class="shipping text-center">
@@ -8,13 +17,19 @@
     <!--/shipping-->
     <div class="panel-group category-products" id="accordian">
         <!--category-productsr-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a href="index.php">ALL</a></h4>
+            </div>
+        </div>
         <?php require 'Control/get_categories.php'; 
         $categories = get_categories();
         foreach ($categories as $category) {
         ?>
+
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4 class="panel-title"><a href="#"><?php echo $category->name ?></a></h4>
+                <h4 class="panel-title"><a href="<?php echo 'index.php?cat='. $category->id; ?>"><?php echo $category->name ?></a></h4>
             </div>
         </div>
         <?php } ?>
