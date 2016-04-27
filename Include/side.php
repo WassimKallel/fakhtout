@@ -1,12 +1,9 @@
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery.js"></script>
 <div class="left-sidebar">
 <h2>Search</h2>
-    <div class="panel panel-default">
-    <div class="input-group">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
-      <input type="text" class="form-control" placeholder="Search for...">
-    </div><!-- /input-group -->
+    <div  style="border-radius: 0 ; box-shadow: 0;" class="panel panel-default">
+      <input style="border-radius: 0; box-shadow: 0; width: 100%; text-align: auto;" type="text" class="form-control" placeholder="Search for...">
     </div>
     <h2>Category</h2>
         <!--shipping-->
