@@ -1,5 +1,4 @@
-
-    <?php include 'Include/header.php';?>
+<?php include 'Include/header.php';?>
     <section>
         <div class="container">
             <div class="row">

@@ -42,7 +42,7 @@ $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 $pos = strrpos($uri,'/');
 $uri = substr($uri,0, $uri - $pos + 1);
 if ($err == 0) {
-	header("Location: http://$host$uri/index.php");
+	header("Location: http://$host$uri/index.php?u=connected");
 }
 else {
 	header("Location: http://$host$uri/login.php?err=$err");

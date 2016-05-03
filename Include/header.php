@@ -69,6 +69,28 @@
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
+                            <?php
+                            if(!empty($_GET)) {
+                             if($_GET['u'] == "new") { ?>
+                            <li><div class="alert alert-success">
+                              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                              <strong>Welcome</strong> You are successfully registred
+                            </div></li>
+                            <?php } 
+                            else if($_GET['u'] == "connected") { ?>
+                            <li><div class="alert alert-info">
+                              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                              <strong>Welcome back ! </strong> You are successfully connected
+                            </div></li>   
+                             <?php } 
+                            else if($_GET['u'] == "logout") { ?>
+                            <li><div class="alert alert-warning">
+                              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                              <strong>Info </strong> You are logged out
+                            </div></li>                         
+                            <?php 
+                            }
+                            }?>
                                 <?php 
                                 session_start();
                                 if(!empty($_SESSION)) { 

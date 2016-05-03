@@ -6,6 +6,7 @@
 </head>
 <body>
 <?php 
+require_once ('config.php');
 session_start();
 if(empty($_SESSION)) { ?>
 	<div class="container">
@@ -25,6 +26,7 @@ if(empty($_SESSION)) { ?>
 	</div>
 <?php } else {?>
 <p>Hello <?php 
+require_once ('config.php');
 require ("User.php");
 $user = unserialize($_SESSION['user']);
 echo $user->name;
