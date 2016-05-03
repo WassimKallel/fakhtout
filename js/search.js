@@ -1,19 +1,15 @@
 function resetsearch() {
-
 	$("#searchdata").val("");
 	$("#add_err").hide();
 }
 
 function searching(string) {
-
-		
 	if(string.length > 3) {
-		
-		$("#main").html("<div id='adr_err'></div>");
-		
+		$(".features_items").html("");
+		$(".title").html("Search Result");
 		$.ajax({
 		type : "POST",
-		url : "search.php",
+		url : "Control/search.php",
 		data : {"searchdata" : string},
 		success: function(data){
 		$("#main").html(data);
