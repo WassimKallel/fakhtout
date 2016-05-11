@@ -5,7 +5,7 @@ function resetsearch() {
 
 function searching(string) {
 	if(string.length > 3) {
-		$(".features_items").html("");
+		$(".content").html('');
 		$(".title").html("Search Result");
 		$.ajax({
 		type : "POST",

@@ -1,23 +1,9 @@
 <?php
-
-/*
-
-search engine 
-
-khaled ( rezk2ll )
-
-*/
-
-# no debugging :p 
 session_start();
-error_reporting(0);
-	# only when there are some requests i will work
-	
+
 if(isset($_POST['searchdata'])) {
-	
-	
-	# connect to database
-	include('connect.php');
+
+	include('config.php');
 	
 	# avoid sql injection
 	
@@ -31,28 +17,36 @@ if(isset($_POST['searchdata'])) {
 	if(!empty($search)) {
 		
 		# let's see if we have it
+		try
+		{
+			$db = new PDO('mysql:host='.DB_HOST.';dbname='.DB_DATABASE.';charset=utf8', DB_USER, DB_PASSWORD);
+		}
+		catch (Exception $e)
+		{
+		        die('Erreur : ' . $e->getMessage());
+		}
 		
-		$nq 		= $connect->query('SELECT count(*) as `nsrch` FROM quests where content like "%'.$search.'%"');
+		$nq 		= $db->query('SELECT count(*) as `nsrch` FROM article where content like "%'.$search.'%"');
 		$cnt_srch 	= $nq->fetch(PDO::FETCH_OBJ);
 		$num_srch 	= $cnt_srch->nsrch;
 		# mmm , good , we found something
 		
 		if($num_srch != 0) {
-			$q =$connect->query('SELECT * FROM quests where content like "%'.$search.'%" ORDER BY id DESC');
+			$q =$db->query('SELECT * FROM article where content like "%'.$search.'%" ORDER BY id DESC');
 			echo '<div id="answers">';
 			while($result = $q->fetch(PDO::FETCH_OBJ)) {
 			//let's get the answers number of this question
-			$get_ans = $connect->query("SELECT count(*) as `nans` FROM answers WHERE id_quest = '".$result->id."'");
+			$get_ans = $db->query("SELECT count(*) as `nans` FROM answers WHERE id_quest = '".$result->id."'");
 			$cnt_ans = $get_ans->fetch(PDO::FETCH_OBJ);
 			$num_ans = $cnt_ans->nans;
 			
 			// and the likes number of this question
-			$get_likes = $connect->query("SELECT count(*) as `nlks` FROM likes WHERE id_quest = '".$result->id."'");
+			$get_likes = $db->query("SELECT count(*) as `nlks` FROM likes WHERE id_quest = '".$result->id."'");
 			$cnt_likes = $get_likes->fetch(PDO::FETCH_OBJ);
 			$num_likes = $cnt_likes->nlks;
 			
 			// and the views number also
-			$get_views = $connect->query("SELECT count(*) as `nvws` FROM views WHERE id_quest = '".$result->id."'");
+			$get_views = $db->query("SELECT count(*) as `nvws` FROM views WHERE id_quest = '".$result->id."'");
 			$cnt_views = $get_views->fetch(PDO::FETCH_OBJ);
 			$num_views = $cnt_views->nvws;
 			
@@ -67,7 +61,7 @@ if(isset($_POST['searchdata'])) {
 			// the user os logged in
 			else {
 			
-			$get_user_like = $connect->query("SELECT count(*) as `ulks` FROM likes WHERE id_quest = '".$result->id."' AND user = '".$user."'");
+			$get_user_like = $db->query("SELECT count(*) as `ulks` FROM likes WHERE id_quest = '".$result->id."' AND user = '".$user."'");
 			$cnt_user_like = $get_user_like->fetch(PDO::FETCH_OBJ);
 			$num_user_like = $cnt_user_like->ulks;
 				// he didn't like it before
@@ -85,7 +79,7 @@ if(isset($_POST['searchdata'])) {
 			}
 			
 			$whois 	= $result->user;
-			$q2 	= $connect->query("SELECT * FROM users WHERE user = '{$whois}'");
+			$q2 	= $db->query("SELECT * FROM users WHERE user = '{$whois}'");
 			$data 	= $q2->fetch(PDO::FETCH_OBJ);
 			if(strlen($data->avatar) > 0) {
 				$profilepic = $data->avatar;

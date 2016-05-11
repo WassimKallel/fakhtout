@@ -1,5 +1,4 @@
 <?php include 'Include/header.php';?>
-
 	<section id="cart_items">
 		<div class="container">
 			<div class="breadcrumbs">
