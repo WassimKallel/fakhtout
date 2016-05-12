@@ -56,7 +56,8 @@
 							</td>
 						</tr>
 
-					<?php }} ?>
+					<?php }}
+					else echo '<tr><td>empty cart</tr></td>'; ?>
 					</tbody>
 				</table>
 			</div>

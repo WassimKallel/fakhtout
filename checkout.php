@@ -59,7 +59,8 @@
 							</td>
 						</tr>
 
-					<?php }} ?>
+					<?php }}
+					else echo '<tr><td>empty cart</tr></td>'; ?>
 					</tbody>
 				</table>
 			</div>
@@ -87,7 +88,12 @@
 			<div class="step-one">
 				<h2 class="heading">History</h2>
 			</div>
-			
+			<?php require_once 'Control/get_history.php';
+			require_once 'Control/get_article.php';
+			$history = get_history($user->id);
+			foreach ($history as $i => $entry) {
+			?>
+			<h3><?php echo $entry['date']; ?></h3>
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
@@ -101,42 +107,41 @@
 						</tr>
 					</thead>
 					<tbody>
+					<?php $carts = $entry['cart'];
+					$total = 0;
+					foreach ($entry['cart']->cart_array as $k => $cart_item) { 
+						$article = get_article($cart_item['item_id']);
+						$total_per_article = intval($article->price) *  intval($cart_item['quantity']);
+						$total = $total + $total_per_article;
+						?>
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="images/cart/one.png" alt=""></a>
+								<img class="cart-img" src="article_pic/<?php echo $article->id; ?>" alt="" /></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
+								<h4><a href=""><?php echo $article->name; ?></a></h4>
+								<p></p>
 							</td>
 							<td class="cart_price">
-								<p>$59</p>
+								<p><?php echo $article->price ?></p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
+									<span><?php echo $cart_item['quantity']; ?></span>
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+								<p class="cart_total_price"><?php echo $total_per_article ?> TND</p>
 							</td>
 						</tr>
+						<?php } ?>
 						<tr>
 							<td colspan="4">&nbsp;</td>
 							<td colspan="2">
 								<table class="table table-condensed total-result">
 									<tr>
 										<td>Cart Sub Total</td>
-										<td>$59</td>
-									</tr>
-									<tr>
-										<td>Exo Tax</td>
-										<td>$2</td>
+										<td><?php if(isset($total)) {echo $total;} else { echo 0;} ?></td>
 									</tr>
 									<tr class="shipping-cost">
 										<td>Shipping Cost</td>
@@ -144,7 +149,7 @@
 									</tr>
 									<tr>
 										<td>Total</td>
-										<td><span>$61</span></td>
+										<td><span><?php if(isset($total)) {echo $total;} else { echo 0;} ?></span></td>
 									</tr>
 								</table>
 							</td>
@@ -152,6 +157,7 @@
 					</tbody>
 				</table>
 			</div>
+			<?php } ?>
 		</div>
 
 	</section> <!--/#cart_items-->
