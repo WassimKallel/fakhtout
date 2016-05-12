@@ -36,8 +36,8 @@
                     <div class="col-sm-6">
                         <div class="contactinfo">
                             <ul class="nav nav-pills">
-                                <li><a href="#"><i class="fa fa-phone"></i> +216 95 012 821</a></li>
-                                <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                                <li><a href="#"><i class="fa fa-phone"></i> +216 24 544 708</a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i> info@fakhtout.com</a></li>
                             </ul>
                         </div>
                     </div>
@@ -91,6 +91,23 @@
                             <?php 
                             }
                             }?>
+                             <?php
+                            if(!empty($_GET["notif"])) {
+                             if($_GET['notif'] == "added") { ?>
+                                    <li><div class="alert alert-success fade in">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong></strong> Item added successfully
+                                    </div></li>
+                             <?php 
+                            }
+                            elseif($_GET['notif'] == "removed") { ?>
+                            <li><div class="alert alert-success fade in">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong></strong> Item removed successfully
+                                    </div></li>
+                            <?php
+                            }
+                            }?>
                                 <?php 
                                 session_start();
                                 if(!empty($_SESSION)) { 
@@ -99,11 +116,13 @@
                                     ?>
                                     <li><a href="#"><i class="fa fa-user"></i> <?php echo $user->name ?></a></li>
                                     <li><a href="checkout.php"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                                    <li><a href="cart.php"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                    <li><a href="cart.php"><i class="fa fa-shopping-cart"></i> Cart (<?php 
+                                        echo sizeof($user->cart->cart_array);
+                                     ?>)</a></li>
                                 <?php } else {?>
                                     <li><a href="login.php"><i class="fa fa-user"></i>Account</a></li>
                                     <li><a href="login.php"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                                    <li><a href="login.php"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                    <li><a href="login.php"><i class="fa fa-shopping-cart"></i>Cart </a></li>
                                 <?php } ?>
                                 
                                 <?php 
@@ -119,37 +138,5 @@
             </div>
         </div>
         <!--/header-middle-->
-        <div class="header-bottom">
-            <!--header-bottom-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-9">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div class="mainmenu pull-left">
-                            <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a href=" index.php" class="active">Home</a></li>
-                                <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
-                                        <li><a href="product-details.html">Product Details</a></li>
-                                        <li><a href="checkout.php">Checkout</a></li>
-                                        <li><a href="cart.php">Cart</a></li>
-
-                                    </ul>
-                                </li>
-                                <li><a href="404.html">404</a></li>
-                                <li><a href="contact-us.html">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+ 
     </header>

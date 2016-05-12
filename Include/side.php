@@ -43,7 +43,7 @@
         ?>
             <ul class="nav nav-pills nav-stacked">
                 <li>
-                    <a href="#"> <span class="pull-right"></span><?php echo $brand[0]; ?></a>
+                    <a href="index.php?brand=<?php echo $brand[0]; ?>"> <span class="pull-right"></span><?php echo $brand[0]; ?></a>
                 </li>
             </ul>
             <?php } ?>
@@ -52,14 +52,5 @@
         
     </div>
     <!--/brands_products-->
-    <div class="price-range">
-        <!--price-range-->
-        <h2>Price Range</h2>
-        <div class="well text-center">
-            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slid id="sl2">
-            <br />
-            <b class="pull-left">TND 0</b> <b class="pull-right">TND 600</b>
-        </div>
-    </div>
-    <!--/price-range-->
+
 </div>

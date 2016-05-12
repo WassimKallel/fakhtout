@@ -5,10 +5,10 @@
 class Article 
 {
 	public $id;
-	private $category;
-	private $name;
+	public $category;
+	public $name;
 	public $description;
-	private $brand;
+	public $brand;
 	public $price;
 
 	function __construct($id, $category, $name, $description, $brand, $price)
